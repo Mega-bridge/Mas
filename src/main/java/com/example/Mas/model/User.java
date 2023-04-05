@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="USER")
+@Table(name="mr_admin_user")
 public class User {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
