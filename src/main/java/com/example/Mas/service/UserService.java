@@ -2,7 +2,6 @@ package com.example.Mas.service;
 
 import com.example.Mas.model.User;
 import com.example.Mas.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
