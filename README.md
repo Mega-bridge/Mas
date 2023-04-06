@@ -1,5 +1,5 @@
 # Mas
 Megabridge Api Server
 
-jdk 11
-mysql
+- jdk 11
+- mysql
