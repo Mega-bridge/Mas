@@ -4,6 +4,7 @@ import com.example.Mas.model.MrDataSet;
 import com.example.Mas.model.MrObject;
 import com.example.Mas.model.MrObjectImage;
 import com.example.Mas.service.MindReaderService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,16 +24,18 @@ public class MindReaderController {
     @Autowired
     private MindReaderService mindReaderService;
 
+    @ApiOperation(value = "DataSet 생성", notes = "DataSet을 생성한다.", httpMethod = "POST")
     @PostMapping(value = "/")
     public ResponseEntity<MrDataSet> createDataSet(@RequestBody MrDataSet mrDataSet) {
         return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createDataSet(mrDataSet));
     }
-
+    @ApiOperation(value = "오브젝트 생성", notes = "오브젝트를 생성한다.", httpMethod = "POST")
     @PostMapping(value = "/object")
     public ResponseEntity<MrObject> createObject(@RequestBody MrObject mrObject) {
         return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createObject(mrObject));
     }
 
+    @ApiOperation(value = "오브젝트 이미지 정보 조회", notes = "이미지 path 정보 등을 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/objectImage")
     public ResponseEntity<List<MrObjectImage>> getObjectImage () {
         return ResponseEntity.ok(mindReaderService.getObjectImage());
