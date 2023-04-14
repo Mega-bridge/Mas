@@ -6,6 +6,7 @@ import com.example.Mas.model.LoginResult;
 import com.example.Mas.model.SignIn;
 import com.example.Mas.model.User;
 import com.example.Mas.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,7 @@ public class AuthController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @ApiOperation(value = "사용자 로그인", notes = "사용자 로그인을 한다.", httpMethod = "POST")
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody SignIn signIn) {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(signIn.getEmail());
@@ -62,6 +64,7 @@ public class AuthController {
         return ResponseEntity.ok(loginResult);
     }
 
+    @ApiOperation(value = "토근 발급", notes = "인증 토근을 발행한다.", httpMethod = "POST")
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody SignIn signIn) throws Exception {
         authenticate(signIn.getEmail(), signIn.getPassword());

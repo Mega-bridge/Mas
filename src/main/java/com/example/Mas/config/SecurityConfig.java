@@ -46,6 +46,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // jwt 사용안함
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
+                .antMatchers(
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui", "/swagger-ui/**", "/swagger-ui.html",
+                        "/webjars/**",
+                        "/",
+                        "/csrf",
+                        "/error"
+                ).permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().disable();
@@ -55,6 +66,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .cors().and().csrf().disable() // rest api이므로 csrf 보안이 필요없으므로 disable처리.
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()// jwt token으로 인증할것이므로 세션필요없으므로 생성안함.
 //                .authorizeRequests()
+//                .antMatchers(
+//                        "/v2/api-docs",
+//                        "/configuration/ui",
+//                        "/swagger-resources/**",
+//                        "/configuration/security",
+//                        "/swagger-ui", "/swagger-ui/**", "/swagger-ui.html",
+//                        "/webjars/**",
+//                        "/",
+//                        "/csrf",
+//                        "/error"
+//                ).permitAll()
 //                // com.example.Mas.controller.AuthController
 //                .antMatchers(POST, "/auth/login").permitAll()
 //                .antMatchers(POST, "/auth/authenticate").permitAll()
