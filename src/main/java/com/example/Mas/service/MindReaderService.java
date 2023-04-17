@@ -1,9 +1,11 @@
 package com.example.Mas.service;
 
 import com.example.Mas.model.MrDataSet;
+import com.example.Mas.model.MrFamilyCode;
 import com.example.Mas.model.MrObject;
 import com.example.Mas.model.MrObjectImage;
 import com.example.Mas.repository.MrDataSetRepository;
+import com.example.Mas.repository.MrFamilyCodeRepository;
 import com.example.Mas.repository.MrObjectImageRepository;
 import com.example.Mas.repository.MrObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +21,18 @@ public class MindReaderService {
     private MrObjectRepository mrObjectRepository;
     @Autowired
     private MrObjectImageRepository mrObjectImageRepository;
+    @Autowired
+    private MrFamilyCodeRepository mrFamilyCodeRepository;
     public MrDataSet createDataSet(MrDataSet mrDataSet) {
         return mrDataSetRepository.save(mrDataSet);
     }
-
     public MrObject createObject(MrObject mrObject) {
         return mrObjectRepository.save(mrObject);
     }
-
     public List<MrObjectImage> getObjectImage() {
         return mrObjectImageRepository.findAll();
+    }
+    public List<MrFamilyCode> getFamilyCode() {
+        return mrFamilyCodeRepository.findAll();
     }
 }
