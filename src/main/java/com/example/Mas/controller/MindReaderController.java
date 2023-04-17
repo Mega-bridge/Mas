@@ -1,6 +1,7 @@
 package com.example.Mas.controller;
 
 import com.example.Mas.model.MrDataSet;
+import com.example.Mas.model.MrFamilyCode;
 import com.example.Mas.model.MrObject;
 import com.example.Mas.model.MrObjectImage;
 import com.example.Mas.service.MindReaderService;
@@ -39,5 +40,11 @@ public class MindReaderController {
     @GetMapping(value = "/objectImage")
     public ResponseEntity<List<MrObjectImage>> getObjectImage () {
         return ResponseEntity.ok(mindReaderService.getObjectImage());
+    }
+
+    @ApiOperation(value = "가족 정보 조회", notes = "가족 정보를 조회한다.", httpMethod = "GET")
+    @GetMapping(value = "/family")
+    public ResponseEntity<List<MrFamilyCode>> getFamilyCode () {
+        return ResponseEntity.ok(mindReaderService.getFamilyCode());
     }
 }
