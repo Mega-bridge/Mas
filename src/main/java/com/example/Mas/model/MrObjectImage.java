@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class MrObjectImage {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int objectCodeId;
+    private Integer id;
+    private Integer objectCodeId;
     private String path;
 }

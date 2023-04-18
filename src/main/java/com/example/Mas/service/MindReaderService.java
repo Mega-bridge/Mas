@@ -26,13 +26,11 @@ public class MindReaderService {
     public MrDataSet createDataSet(MrDataSet mrDataSet) {
         return mrDataSetRepository.save(mrDataSet);
     }
-    public MrObject createObject(MrObject mrObject) {
-        return mrObjectRepository.save(mrObject);
-    }
-    public List<MrObjectImage> getObjectImage() {
+    public MrObject createObject(MrObject mrObject) { return mrObjectRepository.save(mrObject); }
+    public List<MrObject> createObjects(List<MrObject> mrObjects) { return mrObjectRepository.saveAll(mrObjects); }
+    public List<MrObject> findByDataSetSeqAndUserId(Integer seq, Integer userId) { return mrObjectRepository.findByDataSetSeqAndUserId(seq, userId); }
+    public List<MrObjectImage> findObjectImage() {
         return mrObjectImageRepository.findAll();
     }
-    public List<MrFamilyCode> getFamilyCode() {
-        return mrFamilyCodeRepository.findAll();
-    }
+    public List<MrFamilyCode> findFamilyCode() { return mrFamilyCodeRepository.findAll(); }
 }
