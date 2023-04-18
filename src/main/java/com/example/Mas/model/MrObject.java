@@ -21,7 +21,7 @@ public class MrObject {
     private Integer id;
     private Integer dataSetSeq; // mr_data_set.seq
     private Integer userId; // user.id
-    private Integer objectCode; // mr_object_code.id
+    private Integer objectCodeId; // mr_object_code.id
     private Integer name; // mr_family_code.id
     private Float x;
     private Float y;
@@ -29,5 +29,5 @@ public class MrObject {
     private Integer width;
     private Integer height;
     @CreationTimestamp
-    private LocalDateTime createDate;
+    private LocalDateTime createDate; //    TODO 일괄로 저장하기 때문에 의미가 없어짐
 }
