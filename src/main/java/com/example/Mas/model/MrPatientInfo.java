@@ -16,19 +16,13 @@ import javax.persistence.*;
 public class MrPatientInfo {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
-    @OneToOne
-    @JoinColumn(name="gender_id")
-    private MrGenderCode mrGenderCode;
-    @OneToOne
-    @JoinColumn(name="job_id")
-    private MrJobCode mrJobCode;
+    private Integer id;
+    private Integer userId; // user.id
+    private Integer genderId; // mr_gender_code.id
+    private Integer jobId; // mr_job_code.id
     private String email;
-    private int age;
-    private int familyNum;
+    private Integer age;
+    private Integer familyNum;
     private String familyInfo;
     private String familyRelationCode;
 }

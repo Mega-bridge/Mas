@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class MrObjectCode {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String code;
     private String description;
 }

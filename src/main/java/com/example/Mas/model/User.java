@@ -1,11 +1,14 @@
 package com.example.Mas.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -23,8 +26,8 @@ public class User {
     private String email;
     private String role; //ROLE_USER, ROLE_ADMIN
     @CreationTimestamp
-    private Timestamp createDate;
+    private LocalDateTime createDate;
     @UpdateTimestamp
-    private Timestamp updateDate;
+    private LocalDateTime updateDate;
 }
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -18,17 +18,13 @@ import java.sql.Timestamp;
 public class MrDataSet {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int seq;
+    private Integer id;
+    private Integer seq;
     @CreationTimestamp
-    private Timestamp testDate;
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
-    @OneToOne
-    @JoinColumn(name="patient_info_id")
-    private MrPatientInfo mrPatientInfo;
-    @OneToOne
-    @JoinColumn(name="object_id")
-    private MrObject mrObject;
+    private LocalDateTime testDate;
+    private Integer userId; // user.id
+    private Integer patientInfoId; // mr_patient_info.id
+    private Integer controlCount;
+    private Integer fishCount;
+    private Integer objectId; // mr_object.id
 }

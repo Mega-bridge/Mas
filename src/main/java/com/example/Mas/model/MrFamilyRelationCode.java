@@ -16,6 +16,6 @@ import javax.persistence.*;
 public class MrFamilyRelationCode {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String code;
 }
