@@ -17,6 +17,9 @@ public class MrObjectCode {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer type;
+    private Integer face;
+    private Integer waterHeight;
     private String code;
     private String description;
 }
