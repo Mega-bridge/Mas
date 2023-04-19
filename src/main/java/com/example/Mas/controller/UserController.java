@@ -29,6 +29,7 @@ public class UserController {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
         } catch (DuplicateKeyException e) {
+            log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
@@ -38,7 +39,7 @@ public class UserController {
     public ResponseEntity<List<User>> getUserList() {
         List<User> userList = userService.findAll();
         if(userList == null) {
-            log.error("find user list error: {}", userList);
+            log.error("사용자 정보를 찾을 수 없습니다.[userList: null]");
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(userList);
@@ -50,7 +51,7 @@ public class UserController {
             @ApiParam(name = "id", value = "user.id", required = true) @PathVariable("id") int id) {
         User user = userService.findById(id);
         if(user == null) {
-//            log.error("find id error: {}", id);
+            log.error("사용자 정보를 찾을 수 없습니다.[id: {}]", id);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(user);
@@ -62,7 +63,7 @@ public class UserController {
             @ApiParam(name = "name", value = "user.username", required = true) @RequestParam(value = "username") String username) {
         User user = userService.findByUsername(username);
         if(user == null) {
-//            log.error("find username error: {}", username);
+            log.error("사용자 정보를 찾을 수 없습니다.[username: {}]", username);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(user);
@@ -74,7 +75,7 @@ public class UserController {
             @ApiParam(name = "email", value = "user.email", required = true) @RequestParam(value = "email") String email) {
         User user = userService.findByEmail(email);
         if(user == null) {
-            log.error("find email error: {}", email);
+            log.error("사용자 정보를 찾을 수 없습니다.[email: {}]", email);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(user);

@@ -24,9 +24,10 @@ public class MrDataSet {
     private LocalDateTime testDate;
     private Integer userId; // user.id
     private Integer patientInfoId; // mr_patient_info.id
-    private Integer fishBowlCode; // mr_object_code.id
+    private Integer fishbowlCode; // mr_object_code.id
     private Integer waterHeight; // mr_object_code.water_height
     private Integer controlCount;
     private Integer fishCount;
+    private Integer etcCount;
     private Integer objectId; // mr_object.id
 }

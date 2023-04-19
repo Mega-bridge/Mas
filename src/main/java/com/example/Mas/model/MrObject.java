@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -28,6 +26,5 @@ public class MrObject {
     private Integer angle;
     private Integer width;
     private Integer height;
-    @CreationTimestamp
-    private LocalDateTime createDate; //    TODO 일괄로 저장하기 때문에 의미가 없어짐
+    private Integer objectSeq; // 저장된 순서
 }

@@ -48,7 +48,8 @@ public class AuthController {
         // 비밀번호 확인
         boolean matchPassword = bCryptPasswordEncoder.matches(signIn.getPassword(), userDetails.getPassword());
         if(!matchPassword) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            log.error("사용자 비밀번호가 틀렸습니다.[user email: {}]", signIn.getEmail());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         // token으로 만료일 확인
