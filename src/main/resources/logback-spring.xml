@@ -13,7 +13,7 @@
     <appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/mas.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_PATH}/mas.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/mas.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- 30일 지난 파일은 삭제한다.  -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>

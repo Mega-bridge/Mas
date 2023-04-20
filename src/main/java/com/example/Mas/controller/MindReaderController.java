@@ -28,9 +28,21 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "오브젝트별 데이터 세트 생성", notes = "오브젝트별 데이터 세트를 생성한다.", httpMethod = "POST")
-    @PostMapping(value = "/dataSetObject")
-    public ResponseEntity<List<MrDataSet>> createDataSetObject(@RequestBody List<MrDataSet> mrDataSet) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createDataSetObject(mrDataSet));
+    @PostMapping(value = "/object/dataSet")
+    public ResponseEntity<List<MrDataSet>> createDataSetByObject(@RequestBody List<MrDataSet> mrDataSet) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createDataSetByObject(mrDataSet));
+    }
+
+    @ApiOperation(value = "사용자 데이터 세트 조회", notes = "사용자 데이터 세트를 조회한다.", httpMethod = "GET")
+    @GetMapping(value = "/dataSet/{userId}")
+    public ResponseEntity<List<MrDataSet>> findDataSetByUserId(@PathVariable("userId") Integer userId) {
+        return ResponseEntity.ok(mindReaderService.findDataSetByUserId(userId));
+    }
+
+    @ApiOperation(value = "회차별 사용자 데이터 세트 조회", notes = "회차별 사용자 데이터 세트 조회한다.", httpMethod = "GET")
+    @GetMapping(value = "/dataSet/{seq}/{userId}")
+    public ResponseEntity<List<MrDataSet>> findDataSetBySeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
+        return ResponseEntity.ok(mindReaderService.findDataSetBySeqAndUserId(seq, userId));
     }
 
 //    Object
@@ -42,15 +54,15 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "회차별 오브젝트 생성", notes = "회차별 오브젝트를 생성한다.", httpMethod = "POST")
-    @PostMapping(value = "/objects")
-    public ResponseEntity<List<MrObject>> createObjects(@RequestBody List<MrObject> mrObjects) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createObjects(mrObjects));
+    @PostMapping(value = "/seq/object")
+    public ResponseEntity<List<MrObject>> createObjectBySeq(@RequestBody List<MrObject> mrObjects) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createObjectBySeq(mrObjects));
     }
 
     @ApiOperation(value = "회차별 사용자 오브젝트 조회", notes = "회차별 사용자 오브젝트를 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/objects/{seq}/{userId}")
+    @GetMapping(value = "/object/{seq}/{userId}")
     public ResponseEntity<List<MrObject>> findByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findByDataSetSeqAndUserId(seq, userId));
+        return ResponseEntity.ok(mindReaderService.findObjectByDataSetSeqAndUserId(seq, userId));
     }
 
 //    Object Image, Object Name 조회
@@ -73,7 +85,7 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "타입별 오브젝트 코드 조회", notes = "오브젝트 코드 타입으로 오브젝트 코드를 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/objectCodeList/{type}")
+    @GetMapping(value = "/{type}/objectCode")
     public ResponseEntity<List<MrObjectCode>> findObjectCodeByType (@PathVariable("type") Integer type) {
         return ResponseEntity.ok(mindReaderService.findObjectCodeByType(type));
     }
