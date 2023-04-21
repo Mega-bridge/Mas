@@ -29,8 +29,9 @@ public class MindReaderService {
 
     public MrDataSet createDataSet(MrDataSet mrDataSet) { return mrDataSetRepository.save(mrDataSet); }
     public List<MrDataSet> createDataSetByObject(List<MrDataSet> mrDataSet) { return mrDataSetRepository.saveAll(mrDataSet); }
-    public List<MrDataSet> findDataSetByUserId(Integer userId) { return mrDataSetRepository.findDistinctSeqByUserId(userId); }
-    public List<MrDataSet> findDataSetBySeqAndUserId(Integer seq, Integer userId) { return mrDataSetRepository.findBySeqAndUserId(seq, userId); }
+    public List<MrDataSet> findDataSetByUserId(Integer userId) { return mrDataSetRepository.findByUserId(userId); }
+    public List<Object[]> findDistinctSeqAndTestDateByUserId(Integer userId) { return mrDataSetRepository.findDistinctSeqAndTestDateByUserId(userId); }
+    public MrDataSet findDataSetBySeqAndUserId(Integer seq, Integer userId) { return mrDataSetRepository.findBySeqAndUserId(seq, userId); }
     public MrObject createObject(MrObject mrObject) { return mrObjectRepository.save(mrObject); }
     public List<MrObject> createObjectBySeq(List<MrObject> mrObjects) { return mrObjectRepository.saveAll(mrObjects); }
     public List<MrObject> findObjectByDataSetSeqAndUserId(Integer seq, Integer userId) { return mrObjectRepository.findByDataSetSeqAndUserId(seq, userId); }
