@@ -49,7 +49,12 @@ public class MindReaderController {
     @ApiOperation(value = "회차별 사용자 데이터 세트 조회", notes = "회차별 사용자 데이터 세트 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/dataSet/{seq}/{userId}")
     public ResponseEntity<MrDataSet> findDataSetBySeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findDataSetBySeqAndUserId(seq, userId));
+        MrDataSet mrDataSet = mindReaderService.findDataSetBySeqAndUserId(seq, userId);
+        if(mrDataSet == null) {
+            log.warn("데이터 세트 정보를 찾을 수 없습니다.[mrDataSet: null]");
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(mrDataSet);
     }
 
 //    Object
