@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
                 .antMatchers(
-                        "/v2/api-docs",
+                        "/v3/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",
                         "/configuration/security",
@@ -61,13 +61,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().disable();
 
+        // jwt 사용
 //        httpSecurity
 //                .httpBasic().disable() // rest api 이므로 기본설정 사용안함. 기본설정은 비인증시 로그인폼 화면으로 리다이렉트 된다.
 //                .cors().and().csrf().disable() // rest api이므로 csrf 보안이 필요없으므로 disable처리.
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()// jwt token으로 인증할것이므로 세션필요없으므로 생성안함.
 //                .authorizeRequests()
 //                .antMatchers(
-//                        "/v2/api-docs",
+//                        "/v3/api-docs",
 //                        "/configuration/ui",
 //                        "/swagger-resources/**",
 //                        "/configuration/security",
