@@ -5,6 +5,7 @@ import com.example.Mas.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,18 @@ public class MindReaderService {
     public MrObject createObject(MrObject mrObject) { return mrObjectRepository.save(mrObject); }
     public List<MrObject> createObjectBySeq(List<MrObject> mrObjects) { return mrObjectRepository.saveAll(mrObjects); }
     public List<MrObject> findObjectByDataSetSeqAndUserId(Integer seq, Integer userId) { return mrObjectRepository.findByDataSetSeqAndUserId(seq, userId); }
+    public List<MrObjectCode> findObjectCodeByDataSetSeqAndUserId(Integer seq, Integer userId) {
+        List<MrObject> mrObjects = mrObjectRepository.findByDataSetSeqAndUserId(seq, userId);
+        List<Integer> ids = new ArrayList<>();
+
+        if(mrObjects != null) {
+            for(MrObject mrObject : mrObjects) {
+                ids.add(mrObject.getObjectCodeId());
+            }
+        }
+
+        return mrObjectCodeRepository.findAllById(ids);
+    }
     public List<MrObjectImage> findAllObjectImage() { return mrObjectImageRepository.findAll(); }
     public List<MrFamilyCode> findAllFamily() { return mrFamilyCodeRepository.findAll(); }
     public Optional<MrObjectCode> findObjectCodeById(Integer id) { return mrObjectCodeRepository.findById(id); }

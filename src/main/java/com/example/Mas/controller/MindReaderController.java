@@ -39,6 +39,7 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findDataSetByUserId(userId));
     }
 
+    @Deprecated
     @ApiOperation(value = "사용자 회차목록 조회", notes = "사용자 회차목록 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/dataSet/seq/{userId}")
     public ResponseEntity<?> findDistinctSeqAndTestDateByUserId(@PathVariable("userId") Integer userId) {
@@ -67,7 +68,7 @@ public class MindReaderController {
 
     @ApiOperation(value = "회차별 사용자 오브젝트 조회", notes = "회차별 사용자 오브젝트를 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/object/{seq}/{userId}")
-    public ResponseEntity<List<MrObject>> findByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
+    public ResponseEntity<List<MrObject>> findObjectByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
         return ResponseEntity.ok(mindReaderService.findObjectByDataSetSeqAndUserId(seq, userId));
     }
 
@@ -90,10 +91,16 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findObjectCodeById(id));
     }
 
-    @ApiOperation(value = "타입별 오브젝트 코드 조회", notes = "오브젝트 코드 타입으로 오브젝트 코드를 조회한다.", httpMethod = "GET")
+    @ApiOperation(value = "타입별 오브젝트 코드 조회", notes = "오브젝트 코드 타입으로 오브젝트 코드를 조회한다. type: 0=물고기, 1=어항, 2=기타", httpMethod = "GET")
     @GetMapping(value = "/{type}/objectCode")
     public ResponseEntity<List<MrObjectCode>> findObjectCodeByType (@PathVariable("type") Integer type) {
         return ResponseEntity.ok(mindReaderService.findObjectCodeByType(type));
+    }
+
+    @ApiOperation(value = "회차별 사용자 오브젝트 순서 목록 조회", notes = "회차별 사용자 오브젝트 순서 목록을 조회한다.", httpMethod = "GET")
+    @GetMapping(value = "/objectCode/{seq}/{userId}")
+    public ResponseEntity<List<MrObjectCode>> findObjectCodeByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
+        return ResponseEntity.ok(mindReaderService.findObjectCodeByDataSetSeqAndUserId(seq, userId));
     }
 
 //    내담자 추가 입력 정보
