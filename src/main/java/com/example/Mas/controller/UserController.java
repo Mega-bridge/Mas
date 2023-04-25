@@ -24,7 +24,7 @@ public class UserController {
     private UserService userService;
 
     @ApiOperation(value = "사용자 생성", notes = "사용자를 생성한다.(회원가입)", httpMethod = "POST")
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
