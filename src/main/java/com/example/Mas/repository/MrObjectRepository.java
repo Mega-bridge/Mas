@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface MrObjectRepository extends JpaRepository<MrObject, Integer> {
-    List<MrObject> findByDataSetSeqAndUserEmail(Integer seq, String email);
+    List<MrObject> findByDataSetSeqAndUserEmailOrderByObjectSeq(Integer seq, String email);
 }
