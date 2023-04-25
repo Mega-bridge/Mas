@@ -46,7 +46,7 @@ public class MindReaderService {
             }
         }
 
-        return mrObjectCodeRepository.findAllById(ids);
+        return mrObjectCodeRepository.findAllByIds(ids);
     }
     public List<MrObjectImage> findAllObjectImage() { return mrObjectImageRepository.findAll(); }
     public List<MrFamilyCode> findAllFamily() { return mrFamilyCodeRepository.findAll(); }

@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(POST, "/auth/login").permitAll()
                 .antMatchers(POST, "/auth/authenticate").permitAll()
                 // com.example.Mas.controller.UserController
-                .antMatchers(POST, "/user/").permitAll()
+                .antMatchers(POST, "/user").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
