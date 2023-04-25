@@ -2,6 +2,7 @@ package com.example.Mas.controller;
 
 import com.example.Mas.model.*;
 import com.example.Mas.service.MindReaderService;
+import com.example.Mas.utils.SecurityUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +35,36 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "사용자 데이터 세트 조회", notes = "사용자 데이터 세트를 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/dataSet/{userId}")
-    public ResponseEntity<List<MrDataSet>> findDataSetByUserId(@PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findDataSetByUserId(userId));
+    @GetMapping(value = "/dataSet")
+    public ResponseEntity<List<MrDataSet>> findDataSetByUserEmail(
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        return ResponseEntity.ok(mindReaderService.findDataSetByUserEmail(email));
     }
 
     @Deprecated
     @ApiOperation(value = "사용자 회차목록 조회", notes = "사용자 회차목록 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/dataSet/seq/{userId}")
-    public ResponseEntity<?> findDistinctSeqAndTestDateByUserId(@PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findDistinctSeqAndTestDateByUserId(userId));
+    @GetMapping(value = "/dataSet/seq")
+    public ResponseEntity<?> findDistinctSeqAndTestDateByUserEmail(
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        return ResponseEntity.ok(mindReaderService.findDistinctSeqAndTestDateByUserEmail(email));
     }
 
     @ApiOperation(value = "회차별 사용자 데이터 세트 조회", notes = "회차별 사용자 데이터 세트 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/dataSet/{seq}/{userId}")
-    public ResponseEntity<MrDataSet> findDataSetBySeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
-        MrDataSet mrDataSet = mindReaderService.findDataSetBySeqAndUserId(seq, userId);
+    @GetMapping(value = "/dataSet/{seq}")
+    public ResponseEntity<MrDataSet> findDataSetBySeqAndUserEmail(
+            @PathVariable("seq") Integer seq,
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        MrDataSet mrDataSet = mindReaderService.findDataSetBySeqAndUserEmail(seq, email);
+
         if(mrDataSet == null) {
             log.warn("데이터 세트 정보를 찾을 수 없습니다.[mrDataSet: null]");
             return ResponseEntity.noContent().build();
@@ -72,9 +87,14 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "회차별 사용자 오브젝트 조회", notes = "회차별 사용자 오브젝트를 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/object/{seq}/{userId}")
-    public ResponseEntity<List<MrObject>> findObjectByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findObjectByDataSetSeqAndUserId(seq, userId));
+    @GetMapping(value = "/object/{seq}")
+    public ResponseEntity<List<MrObject>> findObjectByDataSetSeqAndUserEmail(
+            @PathVariable("seq") Integer seq,
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        return ResponseEntity.ok(mindReaderService.findObjectByDataSetSeqAndUserEmail(seq, email));
     }
 
 //    Object Image, Object Name 조회
@@ -103,9 +123,14 @@ public class MindReaderController {
     }
 
     @ApiOperation(value = "회차별 사용자 오브젝트 순서 목록 조회", notes = "회차별 사용자 오브젝트 순서 목록을 조회한다.", httpMethod = "GET")
-    @GetMapping(value = "/objectCode/{seq}/{userId}")
-    public ResponseEntity<List<MrObjectCode>> findObjectCodeByDataSetSeqAndUserId(@PathVariable("seq") Integer seq, @PathVariable("userId") Integer userId) {
-        return ResponseEntity.ok(mindReaderService.findObjectCodeByDataSetSeqAndUserId(seq, userId));
+    @GetMapping(value = "/user/objectCode/{seq}")
+    public ResponseEntity<List<MrObjectCode>> findObjectCodeByDataSetSeqAndUserEmail(
+            @PathVariable("seq") Integer seq,
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        return ResponseEntity.ok(mindReaderService.findObjectCodeByDataSetSeqAndUserEmail(seq, email));
     }
 
 //    내담자 추가 입력 정보

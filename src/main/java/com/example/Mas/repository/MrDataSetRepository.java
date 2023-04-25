@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface MrDataSetRepository extends JpaRepository<MrDataSet, Integer> {
-    List<MrDataSet> findByUserId(Integer userId);
-    @Query(value = "SELECT DISTINCT m.seq, m.test_date FROM mr_data_set m WHERE m.user_id = :userId", nativeQuery = true)
-    List<Object[]> findDistinctSeqAndTestDateByUserId(@Param("userId") Integer userId);
-    MrDataSet findBySeqAndUserId(Integer seq, Integer userId);
+    List<MrDataSet> findByUserEmail(String email);
+    @Query(value = "SELECT DISTINCT m.seq, m.test_date FROM mr_data_set m WHERE m.user_email = :email", nativeQuery = true)
+    List<Object[]> findDistinctSeqAndTestDateByUserEmail(@Param("email") String email);
+    MrDataSet findBySeqAndUserEmail(Integer seq, String email);
 }
