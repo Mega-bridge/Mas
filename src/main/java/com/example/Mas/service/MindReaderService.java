@@ -35,9 +35,9 @@ public class MindReaderService {
     public MrDataSet findDataSetBySeqAndUserEmail(Integer seq, String email) { return mrDataSetRepository.findBySeqAndUserEmail(seq, email); }
     public MrObject createObject(MrObject mrObject) { return mrObjectRepository.save(mrObject); }
     public List<MrObject> createObjectBySeq(List<MrObject> mrObjects) { return mrObjectRepository.saveAll(mrObjects); }
-    public List<MrObject> findObjectByDataSetSeqAndUserEmail(Integer seq, String email) { return mrObjectRepository.findByDataSetSeqAndUserEmail(seq, email); }
+    public List<MrObject> findObjectByDataSetSeqAndUserEmail(Integer seq, String email) { return mrObjectRepository.findByDataSetSeqAndUserEmailOrderByObjectSeq(seq, email); }
     public List<MrObjectCode> findObjectCodeByDataSetSeqAndUserEmail(Integer seq, String email) {
-        List<MrObject> mrObjects = mrObjectRepository.findByDataSetSeqAndUserEmail(seq, email);
+        List<MrObject> mrObjects = mrObjectRepository.findByDataSetSeqAndUserEmailOrderByObjectSeq(seq, email);
         List<Integer> ids = new ArrayList<>();
 
         if(mrObjects != null) {
