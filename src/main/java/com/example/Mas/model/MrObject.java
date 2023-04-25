@@ -34,4 +34,5 @@ public class MrObject implements Serializable {
     private Integer height;
     private Integer objectSeq; // 저장된 순서
     private LocalDateTime createDate; // 오브젝트 생성시 timestamp
+    private boolean deleted;
 }
