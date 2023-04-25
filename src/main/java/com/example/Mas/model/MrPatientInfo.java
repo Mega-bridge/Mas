@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Builder
 @Data
@@ -17,7 +18,8 @@ public class MrPatientInfo {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId; // user.id
+    @NotNull
+    private String userEmail; // user.email
     private Integer genderId; // mr_gender_code.id
     private Integer jobId; // mr_job_code.id
     private String email;
