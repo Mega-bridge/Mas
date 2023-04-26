@@ -1,6 +1,5 @@
 package com.example.Mas.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +34,4 @@ public class MrObject implements Serializable {
     private Integer height;
     private Integer objectSeq; // 저장된 순서
     private Timestamp createDate; // 오브젝트 생성시 timestamp
-    @ApiModelProperty(value = "deleted", example = "false")
-    private boolean deleted = false; // 삭제 여부
 }

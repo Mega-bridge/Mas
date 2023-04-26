@@ -20,8 +20,10 @@ public class MindReaderController {
     @Autowired
     private MindReaderService mindReaderService;
 
-//    DataSet
-    @ApiOperation(value = "회차별 DataSet 생성", notes = "회차별 DataSet을 생성한다.", httpMethod = "POST")
+    /**
+     * mrDataSet
+     */
+    @ApiOperation(value = "DataSet 생성", notes = "DataSet를 생성한다.", httpMethod = "POST")
     @PostMapping(value = "/dataSet")
     public ResponseEntity<MrDataSet> createDataSet(@RequestBody MrDataSet mrDataSet) {
         return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createDataSet(mrDataSet));
@@ -72,7 +74,16 @@ public class MindReaderController {
         return ResponseEntity.ok(mrDataSet);
     }
 
-//    Object
+    @ApiOperation(value = "DataSet 삭제", notes = "DataSet를 삭제한다.", httpMethod = "PATCH")
+    @PatchMapping("/dataSet/{id}")
+    public ResponseEntity<List<MrDataSet>> updateDataSetByIdAndUserEmail(@PathVariable("id") Integer id) {
+        String email = SecurityUtils.getUserName();
+        return ResponseEntity.ok(mindReaderService.updateDataSetByIdAndUserEmail(id, email));
+    }
+
+    /**
+     * mrObject
+     */
     @Deprecated
     @ApiOperation(value = "오브젝트 생성", notes = "오브젝트를 생성한다.", httpMethod = "POST")
     @PostMapping(value = "/object")
@@ -97,7 +108,9 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findObjectByDataSetSeqAndUserEmail(seq, email));
     }
 
-//    Object Image, Object Name 조회
+    /**
+     * Object Image, Object Name(family)
+     */
     @ApiOperation(value = "오브젝트 이미지 리스트 조회", notes = "이미지 path 정보 등을 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/objectImage")
     public ResponseEntity<List<MrObjectImage>> findAllObjectImage () {
@@ -110,6 +123,9 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findAllFamily());
     }
 
+    /**
+     * ObjectCode
+     */
     @ApiOperation(value = "오브젝트 코드 조회", notes = "오브젝트 코드 아이디로 오브젝트 코드를 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/objectCode/{id}")
     public ResponseEntity<?> findObjectCodeById (@PathVariable("id") Integer id) {
@@ -133,7 +149,9 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findObjectCodeByDataSetSeqAndUserEmail(seq, email));
     }
 
-//    내담자 추가 입력 정보
+    /**
+     * 내담자 추가 입력 정보
+     */
     @ApiOperation(value = "가족 관계 리스트 조회", notes = "가족 관계 리스트를 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/familyRelation")
     public ResponseEntity<List<MrFamilyRelationCode>> findAllFamilyRelation () {
