@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 
 @Builder
@@ -32,7 +31,8 @@ public class MrDataSet implements Serializable {
     private Integer actionCount; // event 횟수
     private Integer fishCount; // 물고기 갯수
     private Integer etcCount; // 기타 갯수
-    private Blob resultImage; // 결과 이미지
+    @Column(name = "result_image", columnDefinition = "TEXT")
+    private String resultImage; // 결과 이미지
     private Integer resultSheetId; // mr_result_sheet.id
-    private boolean deleted;
+    private boolean deleted = false; // 삭제 여부
 }
