@@ -65,7 +65,7 @@ public class AuthController {
         return ResponseEntity.ok(loginResult);
     }
 
-    @ApiOperation(value = "토근 발급", notes = "인증 토근을 발행한다.", httpMethod = "POST")
+    @ApiOperation(value = "토큰 발급", notes = "인증 토큰을 발행한다.", httpMethod = "POST")
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody SignIn signIn) throws Exception {
         authenticate(signIn.getEmail(), signIn.getPassword());
