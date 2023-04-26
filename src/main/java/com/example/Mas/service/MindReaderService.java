@@ -28,14 +28,37 @@ public class MindReaderService {
     @Autowired
     private MrJobCodeRepository mrJobCodeRepository;
 
+    /**
+     * mrDataSet
+     */
     public MrDataSet createDataSet(MrDataSet mrDataSet) { return mrDataSetRepository.save(mrDataSet); }
     public List<MrDataSet> createDataSetByObject(List<MrDataSet> mrDataSet) { return mrDataSetRepository.saveAll(mrDataSet); }
-    public List<MrDataSet> findDataSetByUserEmail(String email) { return mrDataSetRepository.findByUserEmail(email); }
+    public List<MrDataSet> findDataSetByUserEmail(String email) { return mrDataSetRepository.findByUserEmailAndDeleted(email, false); }
     public List<Object[]> findDistinctSeqAndTestDateByUserEmail(String email) { return mrDataSetRepository.findDistinctSeqAndTestDateByUserEmail(email); }
     public MrDataSet findDataSetBySeqAndUserEmail(Integer seq, String email) { return mrDataSetRepository.findBySeqAndUserEmail(seq, email); }
+    public List<MrDataSet> updateDataSetByIdAndUserEmail(Integer id, String email) {
+        mrDataSetRepository.updateDeletedByIdAndUserEmail(id, email);
+        return mrDataSetRepository.findByUserEmailAndDeleted(email, false);
+    }
+
+    /**
+     * mrObject
+     */
     public MrObject createObject(MrObject mrObject) { return mrObjectRepository.save(mrObject); }
     public List<MrObject> createObjectBySeq(List<MrObject> mrObjects) { return mrObjectRepository.saveAll(mrObjects); }
     public List<MrObject> findObjectByDataSetSeqAndUserEmail(Integer seq, String email) { return mrObjectRepository.findByDataSetSeqAndUserEmailOrderByObjectSeq(seq, email); }
+
+    /**
+     * Object Image, Object Name(family)
+     */
+    public List<MrObjectImage> findAllObjectImage() { return mrObjectImageRepository.findAll(); }
+    public List<MrFamilyCode> findAllFamily() { return mrFamilyCodeRepository.findAll(); }
+
+    /**
+     * ObjectCode
+     */
+    public Optional<MrObjectCode> findObjectCodeById(Integer id) { return mrObjectCodeRepository.findById(id); }
+    public List<MrObjectCode> findObjectCodeByType(Integer type) { return mrObjectCodeRepository.findByType(type); }
     public List<MrObjectCode> findObjectCodeByDataSetSeqAndUserEmail(Integer seq, String email) {
         List<MrObject> mrObjects = mrObjectRepository.findByDataSetSeqAndUserEmailOrderByObjectSeq(seq, email);
         List<Integer> ids = new ArrayList<>();
@@ -48,10 +71,10 @@ public class MindReaderService {
 
         return mrObjectCodeRepository.findAllByIds(ids);
     }
-    public List<MrObjectImage> findAllObjectImage() { return mrObjectImageRepository.findAll(); }
-    public List<MrFamilyCode> findAllFamily() { return mrFamilyCodeRepository.findAll(); }
-    public Optional<MrObjectCode> findObjectCodeById(Integer id) { return mrObjectCodeRepository.findById(id); }
-    public List<MrObjectCode> findObjectCodeByType(Integer type) { return mrObjectCodeRepository.findByType(type); }
+
+    /**
+     * 내담자 추가 입력 정보
+     */
     public List<MrFamilyRelationCode> findAllFamilyRelation() { return mrFamilyRelationCodeRepository.findAll(); }
     public List<MrGenderCode> findAllGender() { return mrGenderCodeRepository.findAll(); }
     public List<MrJobCode> findAllJob() { return mrJobCodeRepository.findAll(); }
