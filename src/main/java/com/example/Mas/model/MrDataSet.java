@@ -1,5 +1,6 @@
 package com.example.Mas.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Builder
 @Data
@@ -22,7 +23,7 @@ public class MrDataSet implements Serializable {
     private Integer id;
     @NotNull
     private Integer seq;
-    private LocalDateTime testDate; // 회차 추가시 timestamp
+    private Timestamp testDate; // 회차 추가시 timestamp
     @NotNull
     private String userEmail; // user.email
     private Integer patientInfoId; // mr_patient_info.id
@@ -34,5 +35,6 @@ public class MrDataSet implements Serializable {
     @Column(name = "result_image", columnDefinition = "TEXT")
     private String resultImage; // 결과 이미지
     private Integer resultSheetId; // mr_result_sheet.id
+    @ApiModelProperty(value = "deleted", example = "false")
     private boolean deleted = false; // 삭제 여부
 }
