@@ -33,12 +33,12 @@ public class MindReaderService {
      */
     public MrDataSet createDataSet(MrDataSet mrDataSet) { return mrDataSetRepository.save(mrDataSet); }
     public List<MrDataSet> createDataSetByObject(List<MrDataSet> mrDataSet) { return mrDataSetRepository.saveAll(mrDataSet); }
-    public List<MrDataSet> findDataSetByUserEmail(String email) { return mrDataSetRepository.findByUserEmailAndDeleted(email, false); }
+    public List<MrDataSet> findDataSetByUserEmail(String email) { return mrDataSetRepository.findByUserEmail(email); }
     public List<Object[]> findDistinctSeqAndTestDateByUserEmail(String email) { return mrDataSetRepository.findDistinctSeqAndTestDateByUserEmail(email); }
     public MrDataSet findDataSetBySeqAndUserEmail(Integer seq, String email) { return mrDataSetRepository.findBySeqAndUserEmail(seq, email); }
     public List<MrDataSet> updateDataSetByIdAndUserEmail(Integer id, String email) {
         mrDataSetRepository.updateDeletedByIdAndUserEmail(id, email);
-        return mrDataSetRepository.findByUserEmailAndDeleted(email, false);
+        return mrDataSetRepository.findByUserEmail(email);
     }
 
     /**

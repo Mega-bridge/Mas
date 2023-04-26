@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface MrDataSetRepository extends JpaRepository<MrDataSet, Integer> {
-    List<MrDataSet> findByUserEmailAndDeleted(String email, boolean deleted);
+    List<MrDataSet> findByUserEmail(String email);
     @Query(value = "SELECT DISTINCT m.seq, m.test_date FROM mr_data_set m WHERE m.user_email = :email", nativeQuery = true)
     List<Object[]> findDistinctSeqAndTestDateByUserEmail(@Param("email") String email);
     MrDataSet findBySeqAndUserEmail(Integer seq, String email);
