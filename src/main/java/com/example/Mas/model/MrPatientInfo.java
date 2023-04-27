@@ -20,7 +20,7 @@ public class MrPatientInfo {
     private Integer id;
     @NotNull
     private String userEmail; // user.email
-    private String userName;
+    private String userName; // user.user_name
     private Integer genderId; // mr_gender_code.id
     private Integer jobId; // mr_job_code.id
     private Integer age;
