@@ -23,7 +23,7 @@ public class MindReaderController {
     /**
      * mrDataSet
      */
-    @ApiOperation(value = "DataSet 생성", notes = "DataSet를 생성한다.", httpMethod = "POST")
+    @ApiOperation(value = "데이터 세트 생성", notes = "데이터 세트를 생성한다.", httpMethod = "POST")
     @PostMapping(value = "/dataSet")
     public ResponseEntity<MrDataSet> createDataSet(@RequestBody MrDataSet mrDataSet) {
         return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createDataSet(mrDataSet));
@@ -47,7 +47,7 @@ public class MindReaderController {
     }
 
     @Deprecated
-    @ApiOperation(value = "사용자 회차목록 조회", notes = "사용자 회차목록 조회한다.", httpMethod = "GET")
+    @ApiOperation(value = "사용자 회차목록 조회", notes = "사용자 회차목록을 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/dataSet/seq")
     public ResponseEntity<?> findDistinctSeqAndTestDateByUserEmail(
             @RequestParam(value = "userEmail", required = false) String userEmail
@@ -57,7 +57,7 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findDistinctSeqAndTestDateByUserEmail(email));
     }
 
-    @ApiOperation(value = "회차별 사용자 데이터 세트 조회", notes = "회차별 사용자 데이터 세트 조회한다.", httpMethod = "GET")
+    @ApiOperation(value = "회차별 사용자 데이터 세트 조회", notes = "회차별 사용자 데이터 세트를 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/dataSet/{seq}")
     public ResponseEntity<MrDataSet> findDataSetBySeqAndUserEmail(
             @PathVariable("seq") Integer seq,
@@ -74,7 +74,7 @@ public class MindReaderController {
         return ResponseEntity.ok(mrDataSet);
     }
 
-    @ApiOperation(value = "DataSet 삭제", notes = "DataSet를 삭제한다.", httpMethod = "PATCH")
+    @ApiOperation(value = "데이터 세트 삭제", notes = "데이터 세트를 삭제한다.", httpMethod = "PATCH")
     @PatchMapping("/dataSet/{id}")
     public ResponseEntity<List<MrDataSet>> updateDataSetByIdAndUserEmail(@PathVariable("id") Integer id) {
         String email = SecurityUtils.getUserName();
@@ -152,6 +152,28 @@ public class MindReaderController {
     /**
      * 내담자 추가 입력 정보
      */
+    @ApiOperation(value = "내담자 추가 입력 정보 생성", notes = "내담자 추가 입력 정보를 생성한다.", httpMethod = "POST")
+    @PostMapping(value = "/patientInfo")
+    public ResponseEntity<MrPatientInfo> createPatientInfo(@RequestBody MrPatientInfo mrPatientInfo) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createPatientInfo(mrPatientInfo));
+    }
+
+    @ApiOperation(value = "내담자 추가 입력 정보 조회", notes = "내담자 추가 입력 정보를 조회한다.", httpMethod = "GET")
+    @GetMapping(value = "/patientInfo")
+    public ResponseEntity<MrPatientInfo> findPatientInfoByUserEmail(
+            @RequestParam(value = "userEmail", required = false) String userEmail
+    ) {
+        String email = userEmail;
+        if(email == null) email = SecurityUtils.getUserName();
+        MrPatientInfo mrPatientInfo = mindReaderService.findPatientInfoByUserEmail(email);
+
+        if(mrPatientInfo == null) {
+            log.warn("내담자 추가 입력 정보를 찾을 수 없습니다.[mrPatientInfo: null]");
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(mrPatientInfo);
+    }
+
     @ApiOperation(value = "가족 관계 리스트 조회", notes = "가족 관계 리스트를 조회한다.", httpMethod = "GET")
     @GetMapping(value = "/familyRelation")
     public ResponseEntity<List<MrFamilyRelationCode>> findAllFamilyRelation () {

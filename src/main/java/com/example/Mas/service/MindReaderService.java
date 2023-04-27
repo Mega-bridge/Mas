@@ -22,6 +22,8 @@ public class MindReaderService {
     @Autowired
     private MrObjectCodeRepository mrObjectCodeRepository;
     @Autowired
+    private MrPatientInfoRepository mrPatientInfoRepository;
+    @Autowired
     private MrFamilyRelationCodeRepository mrFamilyRelationCodeRepository;
     @Autowired
     private MrGenderCodeRepository mrGenderCodeRepository;
@@ -75,6 +77,8 @@ public class MindReaderService {
     /**
      * 내담자 추가 입력 정보
      */
+    public MrPatientInfo createPatientInfo(MrPatientInfo patientInfo) { return mrPatientInfoRepository.save(patientInfo); }
+    public MrPatientInfo findPatientInfoByUserEmail(String email) { return mrPatientInfoRepository.findByUserEmail(email); }
     public List<MrFamilyRelationCode> findAllFamilyRelation() { return mrFamilyRelationCodeRepository.findAll(); }
     public List<MrGenderCode> findAllGender() { return mrGenderCodeRepository.findAll(); }
     public List<MrJobCode> findAllJob() { return mrJobCodeRepository.findAll(); }
