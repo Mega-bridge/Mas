@@ -2,4 +2,4 @@
 Megabridge Api Server
 
 - jdk 11
-- mysql
+- mysql 8.0
