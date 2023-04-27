@@ -2,8 +2,8 @@ package com.example.Mas.controller;
 
 import com.example.Mas.model.User;
 import com.example.Mas.service.UserService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -23,7 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "사용자 생성", notes = "사용자를 생성한다.(회원가입)", httpMethod = "POST")
+    @Operation(summary = "사용자 생성", description = "사용자를 생성한다.(회원가입)", method = "POST")
     @PostMapping("")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
@@ -34,7 +34,7 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "전체 사용자 조회", notes = "전체 사용자를 조회한다.", httpMethod = "GET")
+    @Operation(summary = "전체 사용자 조회", description = "전체 사용자를 조회한다.", method = "GET")
     @GetMapping("/userList")
     public ResponseEntity<List<User>> getUserList() {
         List<User> userList = userService.findAll();
@@ -45,10 +45,10 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    @ApiOperation(value = "사용자 조회", notes = "사용자 아이디로 사용자를 조회한다.", httpMethod = "GET")
+    @Operation(summary = "사용자 조회", description = "사용자 아이디로 사용자를 조회한다.", method = "GET")
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(
-            @ApiParam(name = "id", value = "user.id", required = true) @PathVariable("id") int id) {
+            @Parameter(name = "id", description = "user.id", required = true) @PathVariable("id") int id) {
         User user = userService.findById(id);
         if(user == null) {
             log.error("사용자 정보를 찾을 수 없습니다.[id: {}]", id);
@@ -57,10 +57,10 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @ApiOperation(value = "사용자 조회", notes = "사용자 이름으로 사용자를 조회한다.", httpMethod = "GET")
+    @Operation(summary = "사용자 조회", description = "사용자 이름으로 사용자를 조회한다.", method = "GET")
     @GetMapping("/username")
     public ResponseEntity<User> findByUsername(
-            @ApiParam(name = "name", value = "user.username", required = true) @RequestParam(value = "username") String username) {
+            @Parameter(name = "name", description = "user.username", required = true) @RequestParam(value = "username") String username) {
         User user = userService.findByUsername(username);
         if(user == null) {
             log.error("사용자 정보를 찾을 수 없습니다.[username: {}]", username);
@@ -69,10 +69,10 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @ApiOperation(value = "사용자 조회", notes = "사용자 이메일로 사용자를 조회한다.", httpMethod = "GET")
+    @Operation(summary = "사용자 조회", description = "사용자 이메일로 사용자를 조회한다.", method = "GET")
     @GetMapping("/email")
     public ResponseEntity<User> findByEmail(
-            @ApiParam(name = "email", value = "user.email", required = true) @RequestParam(value = "email") String email) {
+            @Parameter(name = "email", description = "user.email", required = true) @RequestParam(value = "email") String email) {
         User user = userService.findByEmail(email);
         if(user == null) {
             log.error("사용자 정보를 찾을 수 없습니다.[email: {}]", email);

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -18,10 +19,14 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
+@EnableOpenApi
 public class SwaggerConfig {
     private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("MegaBridge API Server")
-                .description("MegaBridge API Docs").build();
+        return new ApiInfoBuilder()
+                .title("MegaBridge API Server")
+                .description("MegaBridge API Docs")
+                .version("1.0")
+                .build();
     }
 
     @Bean

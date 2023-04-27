@@ -1,6 +1,6 @@
 package com.example.Mas.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,9 +32,9 @@ public class MrDataSet implements Serializable {
     private Integer actionCount; // event 횟수
     private Integer fishCount; // 물고기 갯수
     private Integer etcCount; // 기타 갯수
-    @Column(name = "result_image", columnDefinition = "TEXT")
+    @Column(name = "result_image", columnDefinition = "LONGTEXT")
     private String resultImage; // 결과 이미지
     private Integer resultSheetId; // mr_result_sheet.id
-    @ApiModelProperty(value = "deleted", example = "false")
-    private boolean deleted = false; // 삭제 여부
+    @Schema(description = "deleted", example = "false", defaultValue = "false")
+    private boolean deleted; // 삭제 여부
 }
