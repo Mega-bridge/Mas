@@ -152,10 +152,10 @@ public class MindReaderController {
     /**
      * 내담자 추가 입력 정보
      */
-    @Operation(summary = "내담자 추가 입력 정보 생성", description = "내담자 추가 입력 정보를 생성한다.", method = "POST")
+    @Operation(summary = "내담자 추가 입력 정보 생성 및 변경", description = "내담자 추가 입력 정보를 생성 및 변경한다.", method = "POST")
     @PostMapping(value = "/patientInfo")
-    public ResponseEntity<MrPatientInfo> createPatientInfo(@RequestBody MrPatientInfo mrPatientInfo) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createPatientInfo(mrPatientInfo));
+    public ResponseEntity<MrPatientInfo> updatePatientInfo(@RequestBody MrPatientInfo mrPatientInfo) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.updatePatientInfo(mrPatientInfo));
     }
 
     @Operation(summary = "내담자 추가 입력 정보 조회", description = "내담자 추가 입력 정보를 조회한다.", method = "GET")
