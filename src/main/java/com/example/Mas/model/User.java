@@ -26,6 +26,7 @@ public class User {
     private String email;
     @Column(name = "user_name")
     private String username;
+    @NotNull
     private String password;
     private String role; // ROLE_USER, ROLE_ADMIN
     @CreationTimestamp

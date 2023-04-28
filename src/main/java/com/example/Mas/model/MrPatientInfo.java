@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@DynamicUpdate
 @Builder
 @Data
 @Entity
@@ -24,7 +26,7 @@ public class MrPatientInfo {
     private Integer genderId; // mr_gender_code.id
     private Integer jobId; // mr_job_code.id
     private Integer age;
-    private Integer familyNum;
-    private String familyInfo;
-    private String familyRelationCode;
+    private Integer familyNum; // 가족수
+    private String familyInfo; // 가족 구성원
+    private String familyRelation; // 가족간의 관계
 }
