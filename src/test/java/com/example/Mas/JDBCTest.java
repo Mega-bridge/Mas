@@ -21,7 +21,7 @@ public class JDBCTest {
 
         try(Connection con =
                     DriverManager.getConnection(
-                            "jdbc:mysql://192.168.0.63:3306/security?useSSL=false&serverTimezone=Asia/Seoul",
+                            "jdbc:mysql://192.168.0.65:3306/security?useSSL=false&serverTimezone=Asia/Seoul",
                             "cos",
                             "cos12345")){
             System.out.println(con);
