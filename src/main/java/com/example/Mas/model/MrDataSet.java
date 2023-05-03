@@ -32,6 +32,7 @@ public class MrDataSet implements Serializable {
     private Integer actionCount; // event 횟수
     private Integer fishCount; // 물고기 갯수
     private Integer etcCount; // 기타 갯수
+    private Timestamp totalTime; // 총 소요시간
     @Column(name = "result_image", columnDefinition = "LONGTEXT")
     private String resultImage; // 결과 이미지
     private Integer resultSheetId; // mr_result_sheet.id
