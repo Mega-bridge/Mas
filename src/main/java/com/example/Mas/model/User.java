@@ -21,12 +21,12 @@ public class User {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotNull
+    @NotNull(message = "사용자 email를 입력해주세요.")
     @Column(name="email", unique=true)
     private String email;
     @Column(name = "user_name")
     private String username;
-    @NotNull
+    @NotNull(message = "사용자 password를 입력해주세요.")
     private String password;
     private String role; // ROLE_USER, ROLE_ADMIN
     @CreationTimestamp
