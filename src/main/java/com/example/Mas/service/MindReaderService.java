@@ -29,6 +29,12 @@ public class MindReaderService {
     private MrGenderCodeRepository mrGenderCodeRepository;
     @Autowired
     private MrJobCodeRepository mrJobCodeRepository;
+    @Autowired
+    private MrQuestionRepository mrQuestionRepository;
+    @Autowired
+    private MrAnswerRepository mrAnswerRepository;
+    @Autowired
+    private MrResultSheetRepository mrResultSheetRepository;
 
     /**
      * mrDataSet
@@ -82,4 +88,20 @@ public class MindReaderService {
     public List<MrFamilyRelationCode> findAllFamilyRelation() { return mrFamilyRelationCodeRepository.findAll(); }
     public List<MrGenderCode> findAllGender() { return mrGenderCodeRepository.findAll(); }
     public List<MrJobCode> findAllJob() { return mrJobCodeRepository.findAll(); }
+
+    /**
+     * mrQuestion
+     */
+    public List<MrQuestion> findAllQuestion() { return mrQuestionRepository.findAll(); }
+
+    /**
+     * mrAnswer
+     */
+    public List<MrAnswer> findAnswerByQuestionId(Integer questionId) { return mrAnswerRepository.findAnswerByQuestionId(questionId); }
+
+    /**
+     * mrResultSheet
+     */
+    public MrResultSheet createResultSheet(MrResultSheet mrResultSheet) { return mrResultSheetRepository.save(mrResultSheet); }
+    public MrResultSheet findResultSheetByDataSetId(Integer dataSetId) { return mrResultSheetRepository.findByDataSetId(dataSetId); }
 }
