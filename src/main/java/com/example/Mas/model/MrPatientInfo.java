@@ -20,7 +20,7 @@ public class MrPatientInfo {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull
+    @NotNull(message = "사용자 email를 입력해주세요.")
     private String userEmail; // user.email
     private String userName; // user.user_name
     private Integer genderId; // mr_gender_code.id

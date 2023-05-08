@@ -21,10 +21,11 @@ public class MrDataSet implements Serializable {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull
+    @NotNull(message = "회차 정보를 입력해주세요.")
     private Integer seq;
+    @Column(name = "test_date", columnDefinition = "TIMESTAMP")
     private Timestamp testDate; // 회차 추가시 timestamp
-    @NotNull
+    @NotNull(message = "사용자 email를 입력해주세요.")
     private String userEmail; // user.email
     private Integer patientInfoId; // mr_patient_info.id
     private Integer fishbowlCode; // mr_object_code.id
@@ -32,6 +33,7 @@ public class MrDataSet implements Serializable {
     private Integer actionCount; // event 횟수
     private Integer fishCount; // 물고기 갯수
     private Integer etcCount; // 기타 갯수
+    @Column(name = "total_time", columnDefinition = "TIMESTAMP")
     private Timestamp totalTime; // 총 소요시간
     @Column(name = "result_image", columnDefinition = "LONGTEXT")
     private String resultImage; // 결과 이미지
