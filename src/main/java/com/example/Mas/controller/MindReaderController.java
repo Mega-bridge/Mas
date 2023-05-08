@@ -191,4 +191,37 @@ public class MindReaderController {
     public ResponseEntity<List<MrJobCode>> findAllJob () {
         return ResponseEntity.ok(mindReaderService.findAllJob());
     }
+
+    /**
+     * mrQuestion
+     */
+    @Operation(summary = "설문 문항 리스트 조회", description = "설문 문항 리스트를 조회한다.", method = "GET")
+    @GetMapping(value = "/question")
+    public ResponseEntity<List<MrQuestion>> findAllQuestion () {
+        return ResponseEntity.ok(mindReaderService.findAllQuestion());
+    }
+
+    /**
+     * mrAnswer
+     */
+    @Operation(summary = "설문 답안 조회", description = "설문 문항 아이디로 설문 답안을 조회한다.", method = "GET")
+    @GetMapping(value = "/answer/{questionId}")
+    public ResponseEntity<List<MrAnswer>> findAnswerByQuestionId (@PathVariable("questionId") Integer questionId) {
+        return ResponseEntity.ok(mindReaderService.findAnswerByQuestionId(questionId));
+    }
+
+    /**
+     * mrResultSheet
+     */
+    @Operation(summary = "설문 데이터 생성", description = "설문 데이터를 생성한다.", method = "POST")
+    @PostMapping(value = "/resultSheet")
+    public ResponseEntity<MrResultSheet> createResultSheet(@RequestBody MrResultSheet mrResultSheet) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(mindReaderService.createResultSheet(mrResultSheet));
+    }
+
+    @Operation(summary = "회차별 설문 데이터 조회", description = "데이터 세트 아이드로 설문 데이터를 조회한다.", method = "GET")
+    @GetMapping(value = "/resultSheet/{dataSetId}")
+    public ResponseEntity<MrResultSheet> findResultSheetByDataSetId(@PathVariable("dataSetId") Integer dataSetId) {
+        return ResponseEntity.ok(mindReaderService.findResultSheetByDataSetId(dataSetId));
+    }
 }
