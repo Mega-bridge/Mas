@@ -37,6 +37,7 @@ public class MrDataSet implements Serializable {
     private Timestamp totalTime; // 총 소요시간
     @Column(name = "result_image", columnDefinition = "LONGTEXT")
     private String resultImage; // 결과 이미지
+    private Integer detailFishId; // mr_detail_fish.id
     @Schema(description = "deleted", example = "false", defaultValue = "false")
     private boolean deleted; // 삭제 여부
 }

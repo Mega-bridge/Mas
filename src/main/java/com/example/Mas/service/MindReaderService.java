@@ -30,6 +30,8 @@ public class MindReaderService {
     @Autowired
     private MrJobCodeRepository mrJobCodeRepository;
     @Autowired
+    private MrDetailFishRepository mrDetailFishRepository;
+    @Autowired
     private MrQuestionRepository mrQuestionRepository;
     @Autowired
     private MrAnswerRepository mrAnswerRepository;
@@ -63,7 +65,7 @@ public class MindReaderService {
     public List<MrFamilyCode> findAllFamily() { return mrFamilyCodeRepository.findAll(); }
 
     /**
-     * ObjectCode
+     * mrObjectCode
      */
     public Optional<MrObjectCode> findObjectCodeById(Integer id) { return mrObjectCodeRepository.findById(id); }
     public List<MrObjectCode> findObjectCodeByType(Integer type) { return mrObjectCodeRepository.findByType(type); }
@@ -79,6 +81,11 @@ public class MindReaderService {
 
         return mrObjectCodeRepository.findAllByIds(ids);
     }
+
+    /**
+     * mrDetailFish
+     */
+    public List<MrDetailFish> findAllDetailFish() { return mrDetailFishRepository.findAll(); }
 
     /**
      * 내담자 추가 입력 정보
