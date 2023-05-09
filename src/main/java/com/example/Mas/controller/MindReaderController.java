@@ -124,7 +124,7 @@ public class MindReaderController {
     }
 
     /**
-     * ObjectCode
+     * mrObjectCode
      */
     @Operation(summary = "오브젝트 코드 조회", description = "오브젝트 코드 아이디로 오브젝트 코드를 조회한다.", method = "GET")
     @GetMapping(value = "/objectCode/{id}")
@@ -147,6 +147,15 @@ public class MindReaderController {
         String email = userEmail;
         if(email == null) email = SecurityUtils.getUserName();
         return ResponseEntity.ok(mindReaderService.findObjectCodeByDataSetSeqAndUserEmail(seq, email));
+    }
+
+    /**
+     * mrDetailFish
+     */
+    @Operation(summary = "물고기 가족 행동 조회", description = "물고기 가족 행동을 조회한다.", method = "GET")
+    @GetMapping(value = "/detailFish")
+    public ResponseEntity<List<MrDetailFish>> findAllDetailFish() {
+        return ResponseEntity.ok(mindReaderService.findAllDetailFish());
     }
 
     /**
