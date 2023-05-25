@@ -24,6 +24,7 @@ public class MrResultSheet implements Serializable {
     private Integer dataSetId;
     @NotNull(message = "내담자 email 정보를 입력해주세요.")
     private String userEmail; // user.email, 내담자 email
+    @Column(name = "description", columnDefinition = "LONGTEXT")
     private String description;
     private String questionIds;
     private String answerIds;
