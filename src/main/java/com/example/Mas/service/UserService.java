@@ -21,7 +21,8 @@ public class UserService {
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         user.setPassword(encPassword);
-        user.setRole("ROLE_USER");
+        if(user.getRole() == null) user.setRole("ROLE_USER");
+
         return userRepository.save(user);
     }
 
