@@ -219,6 +219,12 @@ public class MindReaderController {
         return ResponseEntity.ok(mindReaderService.findAnswerByQuestionId(questionId));
     }
 
+    @Operation(summary = "설문 답안 전체 조회", description = "설문 답안을 조회한다.", method = "GET")
+    @GetMapping(value = "/answer")
+    public ResponseEntity<List<MrAnswer>> findAllAnswer () {
+        return ResponseEntity.ok(mindReaderService.findAllAnswer());
+    }
+
     /**
      * mrResultSheet
      */

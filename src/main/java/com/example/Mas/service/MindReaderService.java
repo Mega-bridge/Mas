@@ -106,6 +106,8 @@ public class MindReaderService {
      */
     public List<MrAnswer> findAnswerByQuestionId(Integer questionId) { return mrAnswerRepository.findAnswerByQuestionId(questionId); }
 
+    public List<MrAnswer> findAllAnswer() { return mrAnswerRepository.findAll(); }
+
     /**
      * mrResultSheet
      */
