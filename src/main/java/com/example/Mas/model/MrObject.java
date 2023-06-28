@@ -1,5 +1,6 @@
 package com.example.Mas.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,8 @@ public class MrObject implements Serializable {
     private Float x;
     private Float y;
     private Integer angle;
+    @Schema(description = "flip", example = "false", defaultValue = "false")
+    private Boolean flip; // 물고기 머리 방향 = false : left, true : right
     private Float width;
     private Float height;
     private Integer objectSeq; // 저장된 순서
