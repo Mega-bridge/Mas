@@ -30,6 +30,7 @@ public class MrObject implements Serializable {
     private Float x;
     private Float y;
     private Integer angle;
+    private Boolean flip; // 물고기 머리 방향 = false : left, true : right
     private Float width;
     private Float height;
     private Integer objectSeq; // 저장된 순서
